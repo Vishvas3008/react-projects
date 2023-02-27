@@ -11,7 +11,9 @@
   .forline{
     color: rgb(255, 255, 255);
     margin-block-start: 2rem ;
-    margin-inline-start: 16rem;
+    /* margin-inline-start: 16rem; */
+    /* align-items: center; */
     font-size:30px;
     font-weight: bold;
+    text-align: center;
   }
