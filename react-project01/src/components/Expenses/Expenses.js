@@ -1,11 +1,17 @@
-import React from "react";
+import React,{useState} from "react";
 import Expanseitem from "./Expenseitem";
 import "./Expenses.css";
+import ExpenseFilter from "./ExpenseFilter";
 const Expenses = (props)=>{
+const [yearData,setYearData]=useState('2020')
+const dropdownChangeCatcher=(dropdowndata)=>{
+  setYearData(dropdowndata)
+  console.log(dropdowndata);
+}
 
     return(
         <div className="expenses">
-      
+      <ExpenseFilter dropdowndata={yearData}onchangeddropdown={dropdownChangeCatcher}/>
       <Expanseitem
         title={props.expenses[0].title}
         date={props.expenses[0].date}

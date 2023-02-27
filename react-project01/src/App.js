@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 // import logo from "./logo.svg";
 import "./App.css";
 import Expenses from "./components/Expenses/Expenses.js";
+import NewExpense from "./components/NewExpenses/NewExpense";
+import ExpenseForm from "./components/NewExpenses/ExpenseForm";
 const App = () => {
   const expenses = [
     {
@@ -10,7 +12,11 @@ const App = () => {
       amount: 94.12,
       date: new Date(2002, 7, 30),
     },
-    { id: "e2", title: "New TV", amount: 799.49, date: new Date(2021, 2, 12) },
+    { id: "e2", 
+      title: "New TV", 
+      amount: 799.49, 
+      date: new Date(2021, 2, 12) 
+    },
     {
       id: "e3",
       title: "Car Insurance",
@@ -24,9 +30,13 @@ const App = () => {
       date: new Date(2021, 5, 12),
     },
   ];
+  const addingNewExpense=(data)=>{
+    expenses.push(data)
+    console.log(expenses);
+  }
   return (
     <div>
-      
+      <NewExpense onAddedExpenseData={addingNewExpense} />
       <Expenses expenses={expenses} />
     </div>
   );
