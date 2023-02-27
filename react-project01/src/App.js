@@ -3,14 +3,13 @@ import React, {useState} from "react";
 import "./App.css";
 import Expenses from "./components/Expenses/Expenses.js";
 import NewExpense from "./components/NewExpenses/NewExpense";
-import ExpenseForm from "./components/NewExpenses/ExpenseForm";
-const App = () => {
-  const expenses = [
+const App = () => { 
+  const dummyexpenses = [
     {
       id: "e1",
       title: "Toilet Paper",
       amount: 94.12,
-      date: new Date(2002, 7, 30),
+      date: new Date(2020, 7, 30),
     },
     { id: "e2", 
       title: "New TV", 
@@ -30,14 +29,18 @@ const App = () => {
       date: new Date(2021, 5, 12),
     },
   ];
+  const [newexpense,setNewexpense]=useState(dummyexpenses)
+
   const addingNewExpense=(data)=>{
-    expenses.push(data)
-    console.log(expenses);
+    setNewexpense((prevExpenses)=>{
+      return[data,...prevExpenses]
+
+    })
   }
   return (
     <div>
       <NewExpense onAddedExpenseData={addingNewExpense} />
-      <Expenses expenses={expenses} />
+      <Expenses expenses={newexpense} />
     </div>
   );
 };

@@ -1,39 +1,41 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Expanseitem from "./Expenseitem";
 import "./Expenses.css";
 import ExpenseFilter from "./ExpenseFilter";
-const Expenses = (props)=>{
-const [yearData,setYearData]=useState('2020')
-const dropdownChangeCatcher=(dropdowndata)=>{
-  setYearData(dropdowndata)
-  console.log(dropdowndata);
-}
-
-    return(
-        <div className="expenses">
-      <ExpenseFilter dropdowndata={yearData}onchangeddropdown={dropdownChangeCatcher}/>
-      <Expanseitem
-        title={props.expenses[0].title}
-        date={props.expenses[0].date}
-        amount={props.expenses[0].amount}
+import ExpensesChart from "./ExpensesChart";
+const Expenses = (props) => {
+  const [yearData, setYearData] = useState("2023");
+  const dropdownChangeCatcher = (dropdowndata) => {
+    setYearData(dropdowndata);
+    console.log(dropdowndata);
+  };
+  const filterdExpense = props.expenses.filter((expense) => {
+    return expense.date.getFullYear().toString() === yearData;
+  });
+  let filterdata = <div className="forline">No Expense Found!</div>;
+  
+    if (filterdExpense.length > 0) {
+      filterdata = filterdExpense.map((expense) => {
+        return (
+          <Expanseitem
+            key={expense.id}
+            title={expense.title}
+            date={expense.date}
+            amount={expense.amount}
+          />
+        );
+      });
+    }
+  
+  return (
+    <div className="expenses">
+      <ExpenseFilter
+        dropdowndata={yearData}
+        onchangeddropdown={dropdownChangeCatcher}
       />
-      <Expanseitem
-        title={props.expenses[1].title}
-        date={props.expenses[1].date}
-        amount={props.expenses[1].amount}
-      />
-      <Expanseitem
-        title={props.expenses[2].title}
-        date={props.expenses[2].date}
-        amount={props.expenses[2].amount}
-      />
-      <Expanseitem
-        title={props.expenses[3].title}
-        date={props.expenses[3].date}
-        amount={props.expenses[3].amount}
-      />
+      <ExpensesChart expenses={filterdExpense} />
+      {filterdata}
     </div>
-    )
-
-}
-export default Expenses
+  );
+};
+export default Expenses;
