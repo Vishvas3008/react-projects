@@ -30,6 +30,7 @@ const App = () => {
     },
   ];
   const [newexpense,setNewexpense]=useState(dummyexpenses)
+  const [year,setyear]=useState('2023')
 
   const addingNewExpense=(data)=>{
     setNewexpense((prevExpenses)=>{
@@ -37,10 +38,15 @@ const App = () => {
 
     })
   }
+  
+  const yearToAppjs=(year)=>{
+    setyear(year)
+    return year
+  }
   return (
     <div>
-      <NewExpense onAddedExpenseData={addingNewExpense} />
-      <Expenses expenses={newexpense} />
+      <NewExpense onAddedExpenseData={addingNewExpense} moveup={yearToAppjs} />
+      <Expenses expenses={newexpense} todownYear={year} />
     </div>
   );
 };

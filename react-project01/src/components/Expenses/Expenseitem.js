@@ -5,7 +5,7 @@ import Date from "./Expensedate";
 const Expenseitem = (props) => {
  const [title,setTitle]=useState(props.title)
   const clicked = ()=>{
-    setTitle('Updated!')
+    setTitle(prompt('Enter name'))
     console.log(title,setTitle);
   }
   return (

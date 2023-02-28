@@ -20,6 +20,10 @@ const NewExpense = (props) => {
   const cancelExpenseAdding = () => {
     setisEditing(false);
   };
+  const changeWhenAdded=(year)=>{
+const currYear=year.split('-')[0]
+props.moveup(currYear)
+  }
   return (
     <div className="new-expense">
       {!isEditing && (
@@ -30,6 +34,7 @@ const NewExpense = (props) => {
           <ExpenseForm
             onsaveeExpenseForm={savedExpenseData}
             oncancel={cancelExpenseAdding}
+            onchange={changeWhenAdded}
           />
         </div>
       )}
