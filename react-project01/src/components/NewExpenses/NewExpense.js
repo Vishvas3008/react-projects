@@ -20,8 +20,8 @@ const NewExpense = (props) => {
   const cancelExpenseAdding = () => {
     setisEditing(false);
   };
-  const changeWhenAdded=(year)=>{
-const currYear=year.split('-')[0]
+  const changeWhenAdded=(date)=>{
+const currYear=date.split('-')[0]
 props.moveup(currYear)
   }
   return (
