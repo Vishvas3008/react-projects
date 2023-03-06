@@ -11,7 +11,7 @@ const AddingUser = () => {
     });
   };
   console.log(newData);
-
+  
   const nameChange = (e) => {
     setName(e.target.value);
   };
