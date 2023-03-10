@@ -1,9 +1,9 @@
+import { useState, useEffect } from "react";
 import classes from "./AvailableMeals.module.css";
-import Card from '../UI/Card';
-
+import Card from "../UI/Card";
 import MealItem from "./MealItem";
 const MealsList = (props) => {
-  const DUMMY_MEALS = [
+  const DUMMY_MEALS2 = [
     {
       id: "m1",
       name: "Sushi",
@@ -29,6 +29,15 @@ const MealsList = (props) => {
       price: 18.99,
     },
   ];
+  const [DUMMY_MEALS, setDummyMeal] = useState([...DUMMY_MEALS2]);
+
+  useEffect(() => {
+    if (props.newData) {
+      setDummyMeal((prevstate) => {
+        return [props.newData, ...prevstate];
+      });
+    }
+  }, [props.newData]);
   const meals = DUMMY_MEALS.map((meals) => {
     return (
       <MealItem
@@ -40,7 +49,9 @@ const MealsList = (props) => {
   });
   return (
     <section className={classes.meals}>
-      <ul><Card>{meals}</Card></ul>
+      <ul>
+        <Card>{meals}</Card>
+      </ul>
     </section>
   );
 };
