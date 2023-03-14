@@ -1,6 +1,9 @@
-import { useState, Fragment } from "react";
+import { useState, Fragment,useContext } from "react";
 import classes from "./MealsSummary.module.css";
+import CartContext from "../store/cart-context";
+
 const MealsSummery = (props) => {
+  const cartCtx=useContext(CartContext)
   const [IsOrdering, setIsOrdering] = useState(false);
   const [Item, setItem] = useState("");
   const [Description, setdescription] = useState("");
@@ -12,16 +15,20 @@ const MealsSummery = (props) => {
     e.preventDefault();
     setIsOrdering(false);
   };
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
     setIsOrdering(false);
     console.log(Item, Description, Price);
-    props.newData({
-      name: Item,
-      description: Description,
-      price: Price,
-      id: `m${Math.trunc(Math.random() * 100)}`,
-    });
+    if (Item && Description && Price) {
+      
+      props.newData({
+        name: Item,
+        description: Description,
+        price: Price,
+        id: `m${Math.trunc(Math.random() * 100)}`,
+      });
+    }
   };
   const onItemChange = (e) => {
     setItem(e.target.value);
@@ -65,7 +72,7 @@ const MealsSummery = (props) => {
             </div>
             <div>
               <button onClick={onCancelHandler}>Cancel</button>
-              <button onClick={onSubmitHandler}  type="submit">
+              <button onClick={onSubmitHandler} type="submit">
                 ADD
               </button>
             </div>

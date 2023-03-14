@@ -34,7 +34,9 @@ const MealsList = (props) => {
   useEffect(() => {
     if (props.newData) {
       setDummyMeal((prevstate) => {
-        return [props.newData, ...prevstate];
+        if (!prevstate.includes(props.newData.name)) {
+          return [props.newData, ...prevstate];
+        }
       });
     }
   }, [props.newData]);
