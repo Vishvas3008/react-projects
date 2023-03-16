@@ -15,7 +15,7 @@ const Chart = (props) => {
   
   return (
     <div>
-      {!togglevalue&&<div className="chart">
+      {togglevalue&&<div className="chart">
         {props.dataPoints.map((dataPoint) => (
           <ChartBar
             key={dataPoint.label}
@@ -25,7 +25,7 @@ const Chart = (props) => {
           />
         ))}
       </div>}
-      {togglevalue&&<div className="chart">
+      {!togglevalue&&<div className="chart">
         {props.yearDatapoint.map((dataPoint) => (
           <ChartBar
             key={dataPoint.label}

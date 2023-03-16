@@ -1,6 +1,6 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-const initialState = { shoingYearChart: false };
+const initialState = { shoingYearChart: true };
 const yearChartSlice = createSlice({
   name: "yearchart",
   initialState,
