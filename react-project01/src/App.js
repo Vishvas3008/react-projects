@@ -30,7 +30,7 @@ const App = () => {
     },
   ];
   const [newexpense,setNewexpense]=useState(dummyexpenses)
-  const [year,setyear]=useState('2023')
+  const [year,setyear]=useState('')
 
   const addingNewExpense=(data)=>{
     setNewexpense((prevExpenses)=>{

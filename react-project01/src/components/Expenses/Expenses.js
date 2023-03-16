@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import Expanseitem from "./Expenseitem";
 import "./Expenses.css";
 import ExpenseFilter from "./ExpenseFilter";
@@ -7,9 +7,13 @@ const Expenses = (props) => {
   const [yearData, setYearData] = useState(props.todownYear);
   // console.log(props.todownYear);
   // console.log(yearData);
-  if (yearData !== props.todownYear) {
-    setYearData(props.todownYear);
-  }
+  // if (yearData !== props.todownYear) {
+  //   setYearData(props.todownYear);
+  // }
+  useEffect(()=>{
+    setYearData(props.todownYear)
+  },[props.todownYear])
+
   const filterdExpense = props.expenses.filter((expense) => {
     return expense.date.getFullYear().toString() === yearData;
   });
@@ -38,7 +42,7 @@ const Expenses = (props) => {
         dropdowndata={yearData}
         onchangeddropdown={dropdownChangeCatcher}
       />
-      <ExpensesChart expenses={filterdExpense} />
+      <ExpensesChart expenses={filterdExpense} allexpense={props.expenses}/>
       {filterdata}
     </div>
   );

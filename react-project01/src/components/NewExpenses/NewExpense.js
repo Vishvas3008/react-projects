@@ -15,15 +15,15 @@ const NewExpense = (props) => {
     setisEditing(false);
   };
   const newExpenseAdding = () => {
-    setisEditing(true); 
+    setisEditing(true);
   };
   const cancelExpenseAdding = () => {
     setisEditing(false);
   };
-  const changeWhenAdded=(date)=>{
-const currYear=date.split('-')[0]
-props.moveup(currYear)
-  }
+  const changeWhenAdded = (date) => {
+    const currYear = date.split("-")[0];
+    props.moveup(currYear);
+  };
   return (
     <div className="new-expense">
       {!isEditing && (
